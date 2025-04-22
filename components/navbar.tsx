@@ -105,7 +105,7 @@ export default function Navbar() {
               >
                 Home
               </button>
-               <button
+              <button
                 onClick={() => scrollToSection("services")}
                 className="py-2 text-foreground/80 hover:text-foreground transition-colors"
               >

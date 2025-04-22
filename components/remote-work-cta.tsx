@@ -17,11 +17,14 @@ export default function RemoteWorkCTA() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed z-0"
         style={{
-          backgroundImage: "url('/placeholder.svg?height=1080&width=1920')",
+          backgroundImage: "url('/images/3.jpg')",
           backgroundAttachment: "fixed",
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-500/90 via-secondary-500/90 to-accent-500/90 backdrop-blur-sm"></div>
+        
+        {/* Add a overlay of opacity .5 */}
+        <div className="absolute inset-0 bg-black opacity-50" />
+
       </div>
 
       <div className="container relative z-10 mx-auto px-4">
@@ -40,7 +43,7 @@ export default function RemoteWorkCTA() {
           <Button
             onClick={scrollToContact}
             size="lg"
-            className="bg-white text-primary-500 hover:bg-white/90 hover:text-primary-600 text-lg px-8 py-6 h-auto"
+            className="bg-primary-500 hover:bg-primary-600 text-white"
           >
             Hire Me
           </Button>

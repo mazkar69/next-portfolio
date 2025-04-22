@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Github, Linkedin, Mail, Twitter } from "lucide-react"
+import Image from "next/image"
 
 export default function Footer() {
   return (
@@ -8,10 +9,10 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <Link href="/" className="text-xl font-bold">
-              Mohd Azkar
+            <Image src={"/images/sig.png"} alt="Logo" width={200} height={50} />
             </Link>
             <p className="text-muted-foreground mt-2 max-w-md">
-              Full Stack Developer specializing in building exceptional digital experiences.
+           I am always excited to work on some awesome projects, message me and let&apos;s discuss over coffee.
             </p>
           </div>
 
@@ -61,7 +62,7 @@ export default function Footer() {
                   Contact
                 </Link>
               </nav>
-              <p>© {new Date().getFullYear()} Mohd Azkar. All rights reserved.</p>
+              <p>No © copyright issues,  Made by AzKaR with ❤️</p>
             </div>
           </div>
         </div>

@@ -23,7 +23,7 @@ export default function Home() {
       <EducationSection />
       <CertificatesSection />
       <RemoteWorkCTA />
-      <BlogSection />
+      {/* <BlogSection /> */}
       <Contact />
       <BackToTop />
     </div>
