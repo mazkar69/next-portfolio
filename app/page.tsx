@@ -20,9 +20,9 @@ export default function Home() {
       <ServicesSection />
       <Projects />
       <Experience />
-      <EducationSection />
       <CertificatesSection />
       <RemoteWorkCTA />
+      <EducationSection />
       {/* <BlogSection /> */}
       <Contact />
       <BackToTop />

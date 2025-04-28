@@ -9,31 +9,77 @@ import { ExternalLink, Github } from "lucide-react"
 
 const projects = [
   {
-    title: "E-Commerce Platform",
+    title: "Annekaa Heights",
     description:
-      "A full-featured e-commerce platform built with Next.js, TypeScript, and MongoDB. Includes user authentication, product management, and payment processing.",
-    image: "/placeholder.svg?height=400&width=600",
-    liveUrl: "#",
+      "A room booking website that allows users to find and book accommodations easily. Features include user authentication, booking management, and payment processing.",
+    image: "/projects/annekaa.png",
+    liveUrl: "https://annekaaheights.com",
     githubUrl: "#",
-    tags: ["Next.js", "TypeScript", "MongoDB", "Stripe"],
+    tags: ["React.js", "TypeScript", "MongoDB", "Razorpay", "Tailwind CSS", "Express.js", "Node.js", "Channel Manager"],
   },
   {
-    title: "Task Management App",
+    title: "Chaar Dham",
     description:
-      "A collaborative task management application with real-time updates. Features include task assignment, progress tracking, and team collaboration tools.",
-    image: "/placeholder.svg?height=400&width=600",
-    liveUrl: "#",
+      "A website dedicated to the Chaar Dham pilgrimage, providing information about all the temples, puja booking, donation options, and yatra parchi services.",
+    image: "/projects/chaardham.png",
+    liveUrl: "https://chaardham.in",
     githubUrl: "#",
-    tags: ["React", "Node.js", "Socket.io", "PostgreSQL"],
+    tags: ["Next.js", "Node.js", "Socket.io", "MongoDB", "Express.js", "Tailwind CSS", "Razorpay"],
   },
   {
-    title: "Personal Finance Dashboard",
+    title: "JC Chaudhry Numerology",
     description:
-      "An interactive dashboard for personal finance management. Visualize spending patterns, set budgets, and track financial goals.",
+      "A numerology website that provides personalized numerology reports and consultations. Users can book appointments and make payments online.",
+    image: "/projects/jcchaudhry.png",
+    liveUrl: "https://jcchaudhry.com",
+    githubUrl: "#",
+    tags: ["React", "D3.js", "Express", "MongoDB", "Tailwind CSS", "Razorpay"],
+  },
+  {
+    title: "Portfolio Website",
+    description:
+      "My personal portfolio website showcasing my projects, skills, and experience. Built with Next.js and Tailwind CSS for a responsive design.",
+    image: "/projects/portfolio.png",
+    liveUrl: "https://mohdazkar.com",
+    githubUrl: "#",
+    tags: ["Next.js", "Tailwind CSS", "TypeScript"],
+  },
+  {
+    title: "Shaadi Bazaar",
+    description:
+      "A platform for booking venues and vendors for events, providing a seamless experience for users.",
+    image: "/projects/shaadibazaar.png",
+    liveUrl: "https://shaadibazaar.in",
+    githubUrl: "#",
+    tags: ["Next.js", "MongoDB", "Express", "Styled Components", ],
+  },
+  {
+    title: "Wedding Banquets",
+    description:
+      "A wedding banquet booking website that allows users to find and book banquet halls for their events. Features include user authentication, booking management, and payment processing.",
+    image: "/projects/weddingbanqquets.png",
+    liveUrl: "https://weddingbanquets.in",
+    githubUrl: "#",
+    tags: ["Next.js", "Node.js", "MongoDB", "Express.js"],
+  },
+  {
+    title: "Gammer Link",
+    //can play the games through xbox steam playstation window using the crypto coin. spectator. solana
+    description:
+      "A gaming platform that allows users to play games using crypto coins. Features include user authentication, game management, and payment processing.",
+    image: "/projects/gammerlink.png",
+    liveUrl: "https://gamerlink.io/",
+    githubUrl: "#",
+    tags: ["React.js", "Node.js", "MongoDB", "Express.js", "Tailwind CSS", "Crypto", "Solana"],
+  },
+  {
+    title: "TalkToLive",
+    description:
+      "A real-time chat application with user authentication and group chat features. Built with React, Node.js, and Socket.io.",
     image: "/placeholder.svg?height=400&width=600",
     liveUrl: "#",
     githubUrl: "#",
-    tags: ["React", "D3.js", "Express", "MongoDB"],
+    tags: ["React", "Node.js", "Socket.io"],
   },
 ]
 

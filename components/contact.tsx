@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, MapPin, Phone } from "lucide-react"
+import { toast } from "@/components/ui/use-toast"
+import { Toaster } from "@/components/ui/toaster"
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -18,8 +20,6 @@ export default function Contact() {
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitSuccess, setSubmitSuccess] = useState(false)
-  const [submitError, setSubmitError] = useState("")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -29,24 +29,42 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setSubmitError("")
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       })
 
-      setSubmitSuccess(true)
-      setTimeout(() => setSubmitSuccess(false), 5000)
+      const data = await response.json()
+
+      if (response.ok) {
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        })
+
+        toast({
+          title: "Message sent!",
+          description: "Thanks for reaching out! I'll get back to you shortly.",
+          variant: "default",
+        })
+      } else {
+        throw new Error(data.error || "Failed to send message")
+      }
     } catch (error) {
-      setSubmitError("There was an error submitting your message. Please try again.")
+      toast({
+        title: "Error",
+        description:
+          error instanceof Error ? error.message : "There was an error submitting your message. Please try again.",
+        variant: "destructive",
+      })
     } finally {
       setIsSubmitting(false)
     }
@@ -77,7 +95,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-medium">Email</h4>
-                  <p className="text-muted-foreground">contact@mohdazkar.com</p>
+                  <p className="text-muted-foreground">mohdazkar@yahoo.com</p>
                 </div>
               </div>
               <div className="flex items-start">
@@ -95,7 +113,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-medium">Location</h4>
-                  <p className="text-muted-foreground">New Delhi, India</p>
+                  <p className="text-muted-foreground">Delhi, India</p>
                 </div>
               </div>
             </div>
@@ -154,18 +172,11 @@ export default function Contact() {
               <Button type="submit" className="w-full bg-primary-500 hover:bg-primary-600" disabled={isSubmitting}>
                 {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
-
-              {submitSuccess && (
-                <div className="p-3 bg-green-100 text-green-700 rounded-md">
-                  Your message has been sent successfully!
-                </div>
-              )}
-
-              {submitError && <div className="p-3 bg-red-100 text-red-700 rounded-md">{submitError}</div>}
             </form>
           </motion.div>
         </div>
       </div>
+      <Toaster />
     </section>
   )
 }

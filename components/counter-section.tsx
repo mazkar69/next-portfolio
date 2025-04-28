@@ -80,7 +80,7 @@ const Counter = ({ end, duration, suffix = "", prefix = "" }: CounterProps) => {
 const stats = [
   {
     icon: <Code className="h-8 w-8" />,
-    value: 85000,
+    value: 385000,
     suffix: "+",
     label: "Lines of Code",
     duration: 2500,

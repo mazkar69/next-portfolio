@@ -5,24 +5,24 @@ import { GraduationCap, Calendar } from "lucide-react"
 
 const education = [
   {
-    institute: "Massachusetts Institute of Technology",
-    degree: "Master of Science in Computer Science",
+    institute: "Indira Gandhi National Open University",
+    degree: "Master of Computer Applications",
+    duration: "2025 - Ongoing",
+    description:
+      "Pursuing a Master's degree in Computer Applications with a focus on software development and data science. Expected graduation in 2027.",
+  },
+  {
+    institute: "Institute of Management Studies (Noida)",
+    degree: "Bachelor of Computer Applications",
+    duration: "2020 - 2023",
+    description:
+      "Completed a Bachelor's degree in Computer Applications, gaining a solid foundation in programming, database management, and software engineering principles.",
+  },
+  {
+    institute: "St. Mary's School Khaga Fatehpur",
+    degree: "Intermediate (12th Grade)",
     duration: "2018 - 2020",
-    description:
-      "Specialized in Artificial Intelligence and Machine Learning. Thesis on 'Neural Networks for Natural Language Processing'.",
-  },
-  {
-    institute: "University of California, Berkeley",
-    degree: "Bachelor of Science in Computer Science",
-    duration: "2014 - 2018",
-    description:
-      "Graduated with honors. Focused on software engineering and web development. Active member of the Computer Science Club.",
-  },
-  {
-    institute: "Stanford Online",
-    degree: "Professional Certificate in Full Stack Development",
-    duration: "2013 - 2014",
-    description: "Intensive program covering modern web development technologies and practices.",
+    description: "Completed my intermediate education with a focus on IT.",
   },
 ]
 

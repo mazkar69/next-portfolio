@@ -5,25 +5,25 @@ import { Briefcase, Calendar } from "lucide-react"
 
 const experiences = [
   {
-    company: "Tech Innovations Inc.",
-    role: "Senior Full Stack Developer",
-    duration: "2021 - Present",
+    company: "Chaudhry Nummero Pvt. Ltd",
+    role: "Full Stack Developer",
+    duration: "2024 - Present",
     description:
-      "Lead development of enterprise web applications using React, Node.js, and TypeScript. Implemented CI/CD pipelines and mentored junior developers.",
+      "Developing and maintaining web applications using React, Node.js, and MongoDB. Collaborating with cross-functional teams to deliver high-quality software solutions.",
   },
   {
-    company: "Digital Solutions Ltd.",
-    role: "Frontend Developer",
-    duration: "2019 - 2021",
+    company: "TodQuest Pvt. Ltd.",
+    role: "MERN Stack Developer",
+    duration: "2024 - 2024",
     description:
-      "Developed responsive web interfaces using React and Redux. Collaborated with UX designers to implement pixel-perfect designs and improve user experience.",
+      "Developed a full-stack application using MongoDB, Express.js, React, and Node.js. Focused on building RESTful APIs and integrating third-party services.",
   },
   {
-    company: "WebCraft Agency",
-    role: "Web Developer",
-    duration: "2017 - 2019",
+    company: "Wedding Banquets",
+    role: "Next.js Developer",
+    duration: "2023 - 2024",
     description:
-      "Built and maintained client websites using JavaScript, HTML, and CSS. Worked with various CMS platforms and implemented custom solutions.",
+      "Worked on a Next.js project for a wedding banquet platform. Developed server-side rendering features and optimized performance for better SEO.",
   },
 ]
 

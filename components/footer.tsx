@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Github, Linkedin, Mail, Twitter } from "lucide-react"
+import { Github, Linkedin, Mail, Twitter, Phone, MapPin } from "lucide-react"
 import Image from "next/image"
 
 export default function Footer() {
@@ -9,11 +9,27 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <Link href="/" className="text-xl font-bold">
-            <Image src={"/images/sig.png"} alt="Logo" width={200} height={50} />
+              <Image src={"/images/sig.png"} alt="Logo" width={200} height={50} />
             </Link>
             <p className="text-muted-foreground mt-2 max-w-md">
-           I am always excited to work on some awesome projects, message me and let&apos;s discuss over coffee.
+              I am always excited to work on some awesome projects, message me and let&apos;s discuss over coffee.
             </p>
+
+            {/* Contact Information */}
+            <div className="mt-4 space-y-2">
+              <div className="flex items-center text-sm">
+                <Phone className="h-4 w-4 mr-2 text-primary-500" />
+                <span>+91 8840375826</span>
+              </div>
+              <div className="flex items-center text-sm">
+                <Mail className="h-4 w-4 mr-2 text-primary-500" />
+                <span>mohdazkar@yahoo.com</span>
+              </div>
+              <div className="flex items-center text-sm">
+                <MapPin className="h-4 w-4 mr-2 text-primary-500" />
+                <span>Delhi, India</span>
+              </div>
+            </div>
           </div>
 
           <div className="flex flex-col items-center md:items-end">
@@ -40,7 +56,7 @@ export default function Footer() {
                 <Twitter className="h-5 w-5" />
               </Link>
               <Link
-                href="mailto:contact@mohdazkar.com"
+                href="mailto:mohdazkar@yahoo.com"
                 className="p-2 rounded-full bg-background text-foreground hover:text-primary transition-colors"
                 aria-label="Email"
               >

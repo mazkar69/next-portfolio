@@ -1,18 +1,36 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Code2, Database, FileJson, Globe, LayoutGrid, Layers } from "lucide-react"
+import {
+  Code2,
+  Database,
+  FileJson,
+  Globe,
+  LayoutGrid,
+  Layers,
+  Smartphone,
+  Server,
+  Cloud,
+  LayoutDashboard,
+  Paintbrush,
+  GitBranch,
+} from "lucide-react"
 
 const skills = [
+  {
+    name: "JavaScript",
+    icon: <FileJson className="h-8 w-8" />,
+    description: "Modern JavaScript for dynamic web applications",
+  },
   {
     name: "React",
     icon: <LayoutGrid className="h-8 w-8" />,
     description: "Building interactive UIs with React and Next.js",
   },
   {
-    name: "JavaScript",
-    icon: <FileJson className="h-8 w-8" />,
-    description: "Modern JavaScript for dynamic web applications",
+    name: "Next.js",
+    icon: <LayoutDashboard className="h-8 w-8" />,
+    description: "React framework for production-grade applications with SSR and SSG",
   },
   {
     name: "TypeScript",
@@ -20,9 +38,14 @@ const skills = [
     description: "Type-safe code with TypeScript",
   },
   {
-    name: "SQL",
-    icon: <Database className="h-8 w-8" />,
-    description: "Database design and optimization with SQL",
+    name: "Tailwind CSS",
+    icon: <Paintbrush className="h-8 w-8" />,
+    description: "Utility-first CSS framework for rapid UI development",
+  },
+  {
+    name: "Web Development",
+    icon: <Globe className="h-8 w-8" />,
+    description: "Full-stack web development with modern technologies",
   },
   {
     name: "MongoDB",
@@ -30,9 +53,29 @@ const skills = [
     description: "NoSQL database solutions with MongoDB",
   },
   {
-    name: "Web Development",
-    icon: <Globe className="h-8 w-8" />,
-    description: "Full-stack web development with modern technologies",
+    name: "SQL",
+    icon: <Database className="h-8 w-8" />,
+    description: "Database design and optimization with SQL",
+  },
+  {
+    name: "React Native",
+    icon: <Smartphone className="h-8 w-8" />,
+    description: "Cross-platform mobile app development with React Native",
+  },
+  {
+    name: "Node.js",
+    icon: <Server className="h-8 w-8" />,
+    description: "Server-side JavaScript runtime for scalable applications",
+  },
+  {
+    name: "AWS",
+    icon: <Cloud className="h-8 w-8" />,
+    description: "Cloud infrastructure and services with Amazon Web Services",
+  },
+  {
+    name: "DevOps",
+    icon: <GitBranch className="h-8 w-8" />,
+    description: "CI/CD pipelines, containerization, and infrastructure automation",
   },
 ]
 

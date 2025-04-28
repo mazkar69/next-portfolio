@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
-import { Monitor, Smartphone, Link2, Palette, PenToolIcon as Tool } from "lucide-react"
+import { Monitor, Smartphone, Link2, Palette, PenToolIcon as Tool,Cloud } from "lucide-react"
 
 const services = [
   {
@@ -29,6 +29,11 @@ const services = [
     icon: <Tool className="h-10 w-10" />,
     title: "Maintenance & Support",
     description: "Ongoing support to keep your product running smoothly.",
+  },
+  {
+    icon: <Cloud className="h-10 w-10" />,
+    title: "AWS",
+    description: "Deploy, manage, and scale apps using AWS cloud services.",
   },
 ]
 
