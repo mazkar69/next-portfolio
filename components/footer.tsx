@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Github, Linkedin, Mail, Twitter, Phone, MapPin } from "lucide-react"
+import { Github, Linkedin, Mail, Twitter, Phone, MapPin, Instagram } from "lucide-react"
 import Image from "next/image"
 
 export default function Footer() {
@@ -35,25 +35,25 @@ export default function Footer() {
           <div className="flex flex-col items-center md:items-end">
             <div className="flex space-x-4 mb-4">
               <Link
-                href="#"
+                href="https://github.com/mazkar69/"
                 className="p-2 rounded-full bg-background text-foreground hover:text-primary-500 transition-colors"
                 aria-label="GitHub"
               >
                 <Github className="h-5 w-5" />
               </Link>
               <Link
-                href="#"
+                href="https://infjc.com/agvTIi"
                 className="p-2 rounded-full bg-background text-foreground hover:text-primary transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
               </Link>
               <Link
-                href="#"
+                href="https://www.instagram.com/md.azkaar/profilecard/?igsh=eDJxOXFxNWt3M2tr"
                 className="p-2 rounded-full bg-background text-foreground hover:text-primary transition-colors"
-                aria-label="Twitter"
+                aria-label="Instagram"
               >
-                <Twitter className="h-5 w-5" />
+                <Instagram className="h-5 w-5" />
               </Link>
               <Link
                 href="mailto:mohdazkar@yahoo.com"

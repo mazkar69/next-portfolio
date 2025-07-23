@@ -41,7 +41,7 @@ const projects = [
     description:
       "My personal portfolio website showcasing my projects, skills, and experience. Built with Next.js and Tailwind CSS for a responsive design.",
     image: "/projects/portfolio.png",
-    liveUrl: "https://mohdazkar.com",
+    liveUrl: "https://mdazkaar.site",
     githubUrl: "#",
     tags: ["Next.js", "Tailwind CSS", "TypeScript"],
   },
