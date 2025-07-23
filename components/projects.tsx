@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import Image from "next/image"
 import Link from "next/link"
 import { ExternalLink, Github } from "lucide-react"
+import { title } from "process"
 
 const projects = [
   {
@@ -51,7 +52,7 @@ const projects = [
     image: "/projects/shaadibazaar.png",
     liveUrl: "https://shaadibazaar.in",
     githubUrl: "#",
-    tags: ["Next.js", "MongoDB", "Express", "Styled Components", ],
+    tags: ["Next.js", "MongoDB", "Express", "Styled Components",],
   },
   {
     title: "Wedding Banquets",
@@ -61,6 +62,14 @@ const projects = [
     liveUrl: "https://weddingbanquets.in",
     githubUrl: "#",
     tags: ["Next.js", "Node.js", "MongoDB", "Express.js"],
+  },
+  {
+    title: "Camdotify",
+    description: "Digital Marketing Agency Website",
+    image: "/projects/camdotify.png",
+    liveUrl: "https://camdotify.com",
+    githubUrl: "#",
+    tags: ["Next.js", "Tailwind CSS", "TypeScript", "Node.js", "Express.js", "MongoDB"],
   },
   {
     title: "Gammer Link",
@@ -73,14 +82,23 @@ const projects = [
     tags: ["React.js", "Node.js", "MongoDB", "Express.js", "Tailwind CSS", "Crypto", "Solana"],
   },
   {
-    title: "TalkToLive",
+    title: "URL Shortener",
     description:
-      "A real-time chat application with user authentication and group chat features. Built with React, Node.js, and Socket.io.",
-    image: "/placeholder.svg?height=400&width=600",
-    liveUrl: "#",
+      "A URL shortening service that allows users to create short links for their long URLs. Built with React, Node.js, and MongoDB.",
+    image: "/projects/urlclipper.png",
+    liveUrl: "https://infjc.com",
     githubUrl: "#",
     tags: ["React", "Node.js", "Socket.io"],
   },
+  // {
+  //   title: "TalkToLive",
+  //   description:
+  //     "A real-time chat application with user authentication and group chat features. Built with React, Node.js, and Socket.io.",
+  //   image: "/placeholder.svg?height=400&width=600",
+  //   liveUrl: "#",
+  //   githubUrl: "#",
+  //   tags: ["React", "Node.js", "Socket.io"],
+  // },
 ]
 
 export default function Projects() {
