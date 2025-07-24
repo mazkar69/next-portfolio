@@ -95,42 +95,69 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden pt-4 pb-2">
+        {/* Mobile Navigation Slider */}
+        <div 
+          className={cn(
+            "md:hidden fixed top-0 right-0 h-screen w-80 bg-background/95 backdrop-blur-md shadow-lg z-40 transition-transform duration-300 ease-in-out",
+            isOpen ? "translate-x-0" : "translate-x-full"
+          )}
+        >
+          {/* Close Button */}
+          <div className="flex justify-end p-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-foreground/80 hover:text-foreground"
+              onClick={() => setIsOpen(false)}
+              aria-label="Close menu"
+            >
+              <X className="h-6 w-6" />
+            </Button>
+          </div>
+          
+          <div className="px-6">
             <div className="flex flex-col space-y-4">
               <button
                 onClick={() => scrollToSection("home")}
-                className="py-2 text-foreground/80 hover:text-foreground transition-colors"
+                className="py-2 text-foreground/80 hover:text-foreground transition-colors text-left"
               >
                 Home
               </button>
               <button
                 onClick={() => scrollToSection("services")}
-                className="py-2 text-foreground/80 hover:text-foreground transition-colors"
+                className="py-2 text-foreground/80 hover:text-foreground transition-colors text-left"
               >
                 Services
               </button>
               <button
                 onClick={() => scrollToSection("projects")}
-                className="py-2 text-foreground/80 hover:text-foreground transition-colors"
+                className="py-2 text-foreground/80 hover:text-foreground transition-colors text-left"
               >
                 Projects
               </button>
               <button
                 onClick={() => scrollToSection("blog")}
-                className="py-2 text-foreground/80 hover:text-foreground transition-colors"
+                className="py-2 text-foreground/80 hover:text-foreground transition-colors text-left"
               >
                 Blog
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className="py-2 text-foreground/80 hover:text-foreground transition-colors"
+                className="py-2 text-foreground/80 hover:text-foreground transition-colors text-left"
               >
                 Contact
               </button>
             </div>
           </div>
+        </div>
+
+        {/* Overlay - Click outside to close */}
+        {isOpen && (
+          <div 
+            className="md:hidden fixed w-full h-screen inset-0 bg-black/50 backdrop-blur-sm z-30 cursor-pointer"
+            onClick={() => setIsOpen(false)}
+            aria-label="Close menu overlay"
+          />
         )}
       </div>
     </header>
