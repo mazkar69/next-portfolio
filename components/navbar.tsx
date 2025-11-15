@@ -24,13 +24,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const scrollToSection = (id: string) => {
-    setIsOpen(false)
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
-  }
+
 
   return (
     <header
@@ -46,36 +40,36 @@ export default function Navbar() {
           </Link>
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={() => scrollToSection("home")}
+            <Link
+              href={"/#home"}
               className="text-foreground/80 hover:text-primary-500 transition-colors"
             >
               Home
-            </button>
-            <button
-              onClick={() => scrollToSection("services")}
+            </Link>
+            <Link
+              href={"/#services"}
               className="text-foreground/80 hover:text-primary-500 transition-colors"
             >
               Services
-            </button>
-            <button
-              onClick={() => scrollToSection("projects")}
+            </Link>
+            <Link
+              href={"/#projects"}
               className="text-foreground/80 hover:text-primary-500 transition-colors"
             >
               Projects
-            </button>
-            <button
-              onClick={() => scrollToSection("blog")}
+            </Link>
+            <Link
+              href={"/#blog"}
               className="text-foreground/80 hover:text-primary-500 transition-colors"
             >
               Blog
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
+            </Link>
+            <Link 
+              href={"/#contact" }
               className="text-foreground/80 hover:text-primary-500 transition-colors"
             >
               Contact
-            </button>
+            </Link>
           </nav>
 
           <div className="flex items-center gap-2">
@@ -117,36 +111,36 @@ export default function Navbar() {
           
           <div className="px-6">
             <div className="flex flex-col space-y-4">
-              <button
-                onClick={() => scrollToSection("home")}
+              <Link
+                href={"/#home"}
                 className="py-2 text-foreground/80 hover:text-foreground transition-colors text-left"
               >
                 Home
-              </button>
-              <button
-                onClick={() => scrollToSection("services")}
+              </Link>
+              <Link
+                href={"/#services"}
                 className="py-2 text-foreground/80 hover:text-foreground transition-colors text-left"
               >
                 Services
-              </button>
-              <button
-                onClick={() => scrollToSection("projects")}
+              </Link>
+              <Link
+                href={"/#projects"}
                 className="py-2 text-foreground/80 hover:text-foreground transition-colors text-left"
               >
                 Projects
-              </button>
-              <button
-                onClick={() => scrollToSection("blog")}
+              </Link>
+              <Link
+                href={"/#blog"}
                 className="py-2 text-foreground/80 hover:text-foreground transition-colors text-left"
               >
                 Blog
-              </button>
-              <button
-                onClick={() => scrollToSection("contact")}
+              </Link>
+              <Link
+                href={"/#contact"}
                 className="py-2 text-foreground/80 hover:text-foreground transition-colors text-left"
               >
                 Contact
-              </button>
+              </Link>
             </div>
           </div>
         </div>

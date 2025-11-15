@@ -10,6 +10,7 @@ import BlogSection from "@/components/blog-section"
 import RemoteWorkCTA from "@/components/remote-work-cta"
 import Contact from "@/components/contact"
 import BackToTop from "@/components/back-to-top"
+import ChatIcon from "@/components/chat-icon"
 
 export default function Home() {
   return (
@@ -25,7 +26,8 @@ export default function Home() {
       <EducationSection />
       {/* <BlogSection /> */}
       <Contact />
-      <BackToTop />
+      {/* <BackToTop /> */}
+      <ChatIcon />
     </div>
   )
 }
