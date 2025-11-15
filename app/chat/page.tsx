@@ -154,7 +154,7 @@ export default function ChatPage() {
         >
           <Card className="h-[calc(100vh-16rem)] flex flex-col gradient-border">
             {/* Messages Area */}
-            <ScrollArea ref={scrollAreaRef} className="flex-1 p-6">
+            <ScrollArea ref={scrollAreaRef} className="flex-1 p-3 sm:p-6">
               <div className="space-y-4">
                 {messages.map((message, index) => (
                   <motion.div
@@ -165,7 +165,7 @@ export default function ChatPage() {
                     className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
                   >
                     <div
-                      className={`flex gap-3 max-w-[80%] ${
+                      className={`flex flex-col sm:flex-row gap-1 sm:gap-3 max-w-[100%] sm:max-w-[80%] ${
                         message.sender === "user" ? "flex-row-reverse" : "flex-row"
                       }`}
                     >
@@ -230,7 +230,7 @@ export default function ChatPage() {
             </ScrollArea>
 
             {/* Input Area */}
-            <div className="border-t p-4">
+            <div className="border-t p-2 sm:p-4">
               <div className="flex gap-2">
                 <Input
                   ref={inputRef}
@@ -248,7 +248,7 @@ export default function ChatPage() {
                   size="icon"
                   className="bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white"
                 >
-                  <Send className="h-5 w-5" />
+                  <Send className="h-4 w-4" />
                 </Button>
               </div>
               <p className="text-xs text-muted-foreground mt-2 text-center">
