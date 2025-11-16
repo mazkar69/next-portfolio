@@ -58,12 +58,12 @@ export default function Navbar() {
             >
               Projects
             </Link>
-            <Link
+            {/* <Link
               href={"/#blog"}
               className="text-foreground/80 hover:text-primary-500 transition-colors"
             >
               Blog
-            </Link>
+            </Link> */}
             <Link 
               href={"/#contact" }
               className="text-foreground/80 hover:text-primary-500 transition-colors"
@@ -129,12 +129,12 @@ export default function Navbar() {
               >
                 Projects
               </Link>
-              <Link
+              {/* <Link
                 href={"/#blog"}
                 className="py-2 text-foreground/80 hover:text-foreground transition-colors text-left"
               >
                 Blog
-              </Link>
+              </Link> */}
               <Link
                 href={"/#contact"}
                 className="py-2 text-foreground/80 hover:text-foreground transition-colors text-left"

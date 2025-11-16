@@ -44,16 +44,16 @@ const skills = [
     icon: <Paintbrush className="h-8 w-8" />,
     description: "Utility-first CSS framework for rapid UI development",
   },
-  {
-    name: "Web Development",
-    icon: <Globe className="h-8 w-8" />,
-    description: "Full-stack web development with modern technologies",
-  },
-  {
-    name: "React Native",
-    icon: <Smartphone className="h-8 w-8" />,
-    description: "Cross-platform mobile app development with React Native",
-  },
+  // {
+  //   name: "Web Development",
+  //   icon: <Globe className="h-8 w-8" />,
+  //   description: "Full-stack web development with modern technologies",
+  // },
+  // {
+  //   name: "React Native",
+  //   icon: <Smartphone className="h-8 w-8" />,
+  //   description: "Cross-platform mobile app development with React Native",
+  // },
   {
     name: "Node.js",
     icon: <Server className="h-8 w-8" />,
@@ -84,11 +84,11 @@ const skills = [
     icon: <Cloud className="h-8 w-8" />,
     description: "Cloud infrastructure and services with Amazon Web Services",
   },
-  {
-    name: "DevOps",
-    icon: <GitBranch className="h-8 w-8" />,
-    description: "CI/CD pipelines, containerization, and infrastructure automation",
-  },
+  // {
+  //   name: "DevOps",
+  //   icon: <GitBranch className="h-8 w-8" />,
+  //   description: "CI/CD pipelines, containerization, and infrastructure automation",
+  // },
   {
     name: "Docker",
     icon: <Container className="h-8 w-8" />,

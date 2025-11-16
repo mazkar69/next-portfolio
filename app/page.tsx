@@ -1,5 +1,7 @@
 import Hero from "@/components/hero"
 import Skills from "@/components/skills"
+import TechStackInteractive from "@/components/tech-stack-interactive"
+import GitHubStats from "@/components/github-stats"
 import CounterSection from "@/components/counter-section"
 import ServicesSection from "@/components/services-section"
 import Projects from "@/components/projects"
@@ -17,9 +19,11 @@ export default function Home() {
     <div className="flex flex-col">
       <Hero />
       <Skills />
+      <TechStackInteractive />
+      <GitHubStats />
       <CounterSection />
       <ServicesSection />
-      <Projects />
+      <Projects limit={6} />
       <Experience />
       <CertificatesSection />
       <RemoteWorkCTA />

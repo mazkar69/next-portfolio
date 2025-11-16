@@ -23,7 +23,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center text-sm">
                 <Mail className="h-4 w-4 mr-2 text-primary-500" />
-                <span>mohdazkar@yahoo.com</span>
+                <span>dev.azkaar@gmail.com</span>
               </div>
               <div className="flex items-center text-sm">
                 <MapPin className="h-4 w-4 mr-2 text-primary-500" />
@@ -56,7 +56,7 @@ export default function Footer() {
                 <Instagram className="h-5 w-5" />
               </Link>
               <Link
-                href="mailto:mohdazkar@yahoo.com"
+                href="mailto:dev.azkaar@gmail.com"
                 className="p-2 rounded-full bg-background text-foreground hover:text-primary transition-colors"
                 aria-label="Email"
               >

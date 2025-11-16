@@ -91,7 +91,7 @@ pnpm lint         # ESLint (currently ignored during builds)
 **Contact Form:** `app/api/contact/route.ts`
 - POST endpoint using nodemailer
 - **Credentials are placeholders** - update SMTP config before deployment
-- Sends two emails: one to owner (`mohdazkar@yahoo.com`) and confirmation to user
+- Sends two emails: one to owner (`dev.azkaar@gmail.com`) and confirmation to user
 - Returns 400/500 error responses with JSON messages
 
 ## Data Management

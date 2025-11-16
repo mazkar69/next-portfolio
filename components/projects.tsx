@@ -5,55 +5,10 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import Image from "next/image"
 import Link from "next/link"
-import { ExternalLink, Github } from "lucide-react"
-import { title } from "process"
+import { ExternalLink, Github, ArrowRight } from "lucide-react"
+import { projectsData } from "@/lib/projects-data"
 
-const projects = [
-  {
-    title: "Annekaa Heights",
-    description:
-      "A room booking website that allows users to find and book accommodations easily. Features include user authentication, booking management, and payment processing.",
-    image: "/projects/annekaa.png",
-    liveUrl: "https://annekaaheights.com",
-    githubUrl: "#",
-    tags: ["React.js", "TypeScript", "MongoDB", "Razorpay", "Tailwind CSS", "Express.js", "Node.js", "Channel Manager"],
-  },
-  {
-    title: "Chaar Dham",
-    description:
-      "A website dedicated to the Chaar Dham pilgrimage, providing information about all the temples, puja booking, donation options, and yatra parchi services.",
-    image: "/projects/chaardham.png",
-    liveUrl: "https://chaardham.in",
-    githubUrl: "#",
-    tags: ["Next.js", "Node.js", "Socket.io", "MongoDB", "Express.js", "Tailwind CSS", "Razorpay"],
-  },
-  {
-    title: "JC Chaudhry Numerology",
-    description:
-      "A numerology website that provides personalized numerology reports and consultations. Users can book appointments and make payments online.",
-    image: "/projects/jcchaudhry.png",
-    liveUrl: "https://jcchaudhry.com",
-    githubUrl: "#",
-    tags: ["React", "D3.js", "Express", "MongoDB", "Tailwind CSS", "Razorpay"],
-  },
-  {
-    title: "Portfolio Website",
-    description:
-      "My personal portfolio website showcasing my projects, skills, and experience. Built with Next.js and Tailwind CSS for a responsive design.",
-    image: "/projects/portfolio.png",
-    liveUrl: "https://mdazkaar.site",
-    githubUrl: "#",
-    tags: ["Next.js", "Tailwind CSS", "TypeScript"],
-  },
-  {
-    title: "Shaadi Bazaar",
-    description:
-      "A platform for booking venues and vendors for events, providing a seamless experience for users.",
-    image: "/projects/shaadibazaar.png",
-    liveUrl: "https://shaadibazaar.in",
-    githubUrl: "#",
-    tags: ["Next.js", "MongoDB", "Express", "Styled Components",],
-  },
+const additionalProjects = [
   {
     title: "Wedding Banquets",
     description:
@@ -73,7 +28,6 @@ const projects = [
   },
   {
     title: "Gammer Link",
-    //can play the games through xbox steam playstation window using the crypto coin. spectator. solana
     description:
       "A gaming platform that allows users to play games using crypto coins. Features include user authentication, game management, and payment processing.",
     image: "/projects/gammerlink.png",
@@ -90,18 +44,24 @@ const projects = [
     githubUrl: "#",
     tags: ["React", "Node.js", "Socket.io"],
   },
-  // {
-  //   title: "TalkToLive",
-  //   description:
-  //     "A real-time chat application with user authentication and group chat features. Built with React, Node.js, and Socket.io.",
-  //   image: "/placeholder.svg?height=400&width=600",
-  //   liveUrl: "#",
-  //   githubUrl: "#",
-  //   tags: ["React", "Node.js", "Socket.io"],
-  // },
 ]
 
-export default function Projects() {
+// Combine featured projects with additional ones
+export const allProjects = [
+  ...projectsData.map(p => ({
+    title: p.title,
+    description: p.description,
+    image: p.image,
+    liveUrl: p.liveUrl,
+    githubUrl: p.githubUrl,
+    tags: p.tags,
+    slug: p.slug,
+  })),
+  ...additionalProjects
+]
+
+export default function Projects({ limit }: { limit?: number } = {}) {
+  const displayProjects = limit ? allProjects.slice(0, limit) : allProjects
   return (
     <section id="projects" className="py-16 md:py-24">
       <div className="container mx-auto px-4">
@@ -114,7 +74,7 @@ export default function Projects() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {displayProjects.map((project, index) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 20 }}
@@ -122,13 +82,13 @@ export default function Projects() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full flex flex-col overflow-hidden hover:shadow-md transition-shadow">
+              <Card className="h-full flex flex-col overflow-hidden hover:shadow-md transition-shadow group">
                 <div className="relative h-48 w-full overflow-hidden">
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform hover:scale-105 duration-500"
+                    className="object-cover transition-transform group-hover:scale-105 duration-500"
                   />
                 </div>
                 <CardHeader>
@@ -144,24 +104,50 @@ export default function Projects() {
                 <CardContent className="flex-grow">
                   <CardDescription>{project.description}</CardDescription>
                 </CardContent>
-                <CardFooter className="flex justify-between">
-                  <Button variant="outline" size="sm" asChild className="gradient-border">
-                    <Link href={project.githubUrl} target="_blank">
-                      <Github className="mr-2 h-4 w-4" />
-                      Code
-                    </Link>
-                  </Button>
-                  <Button size="sm" asChild className="bg-primary-500 hover:bg-primary-600">
+                <CardFooter className="flex gap-2">
+                  {project.githubUrl !== "#" && (
+                    <Button variant="outline" size="sm" asChild className="gradient-border flex-1">
+                      <Link href={project.githubUrl} target="_blank">
+                        <Github className="mr-2 h-4 w-4" />
+                        Code
+                      </Link>
+                    </Button>
+                  )}
+                  <Button size="sm" asChild className="bg-primary-500 hover:bg-primary-600 flex-1">
                     <Link href={project.liveUrl} target="_blank">
                       <ExternalLink className="mr-2 h-4 w-4" />
                       Live Demo
                     </Link>
                   </Button>
+                  {/* {('slug' in project && project.slug) ? (
+                    <Button variant="ghost" size="sm" asChild>
+                      <Link href={`/projects/${project.slug}`}>
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </Button>
+                  ) : null} */}
                 </CardFooter>
               </Card>
             </motion.div>
           ))}
         </div>
+
+        {limit && allProjects.length > limit && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <Link href="/projects">
+              <Button size="lg" className="gap-2">
+                View All Projects
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+          </motion.div>
+        )}
       </div>
     </section>
   )

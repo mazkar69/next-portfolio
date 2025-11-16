@@ -12,7 +12,7 @@ const SYSTEM_INSTRUCTION = `You are an AI assistant for Mohd Azkar's portfolio w
 PROFILE INFORMATION of Mohd Azkar:
 - Name: Mohd Azkar
 - Role: Full Stack Developer
-- Email: mohdazkar@yahoo.com
+- Email: dev.azkaar@gmail.com
 - Phone: +91-8840375826
 - Location: India, Delhi
 - Website: https://mdazkaar.site
