@@ -17,24 +17,64 @@ interface Message {
 }
 
 export default function ChatPage() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "1",
-      content: "You can ask me anything about Mohd Azkar's profile, projects, experience, education, or certificates.",
-      sender: "ai",
-      timestamp: new Date(),
-    },
-  ])
-
+  const [messages, setMessages] = useState<Message[]>([])
   const [inputValue, setInputValue] = useState("")
   const [isTyping, setIsTyping] = useState(false)
   const scrollAreaRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  // Load messages from session storage on initial render
+  useEffect(() => {
+    const storedMessages = sessionStorage.getItem("chatMessages")
+    if (storedMessages) {
+      try {
+        const parsedMessages = JSON.parse(storedMessages)
+        // Convert timestamp strings back to Date objects
+        const messagesWithDates = parsedMessages.map((msg: Message) => ({
+          ...msg,
+          timestamp: new Date(msg.timestamp),
+        }))
+        setMessages(messagesWithDates)
+      } catch (error) {
+        console.error("Error loading messages from session storage:", error)
+        // If error, set default welcome message
+        setMessages([
+          {
+            id: "1",
+            content:
+              "You can ask me anything about Mohd Azkar's profile, projects, experience, education, or certificates.",
+            sender: "ai",
+            timestamp: new Date(),
+          },
+        ])
+      }
+    } else {
+      // No stored messages, set default welcome message
+      setMessages([
+        {
+          id: "1",
+          content:
+            "You can ask me anything about Mohd Azkar's profile, projects, experience, education, or certificates.",
+          sender: "ai",
+          timestamp: new Date(),
+        },
+      ])
+    }
+    setIsLoaded(true)
+  }, [])
+
+  // Save messages to session storage whenever they change
+  useEffect(() => {
+    if (isLoaded && messages.length > 0) {
+      sessionStorage.setItem("chatMessages", JSON.stringify(messages))
+    }
+  }, [messages, isLoaded])
 
   useEffect(() => {
     // Scroll to bottom when new messages arrive
     if (scrollAreaRef.current) {
-      const scrollContainer = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]')
+      const scrollContainer = scrollAreaRef.current.querySelector("[data-radix-scroll-area-viewport]")
       if (scrollContainer) {
         scrollContainer.scrollTop = scrollContainer.scrollHeight
       }

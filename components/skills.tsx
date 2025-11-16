@@ -14,6 +14,8 @@ import {
   LayoutDashboard,
   Paintbrush,
   GitBranch,
+  Container,
+  Sparkles,
 } from "lucide-react"
 
 const skills = [
@@ -48,16 +50,6 @@ const skills = [
     description: "Full-stack web development with modern technologies",
   },
   {
-    name: "MongoDB",
-    icon: <Layers className="h-8 w-8" />,
-    description: "NoSQL database solutions with MongoDB",
-  },
-  {
-    name: "SQL",
-    icon: <Database className="h-8 w-8" />,
-    description: "Database design and optimization with SQL",
-  },
-  {
     name: "React Native",
     icon: <Smartphone className="h-8 w-8" />,
     description: "Cross-platform mobile app development with React Native",
@@ -66,6 +58,26 @@ const skills = [
     name: "Node.js",
     icon: <Server className="h-8 w-8" />,
     description: "Server-side JavaScript runtime for scalable applications",
+  },
+    {
+    name: "Python (Django)",
+    icon: <Code2 className="h-8 w-8" />,
+    description: "Backend development with Python and Django framework",
+  },
+  {
+    name: "GenAI",
+    icon: <Sparkles className="h-8 w-8" />,
+    description: "Generative AI integration with OpenAI and Gemini",
+  },
+    {
+    name: "MongoDB",
+    icon: <Layers className="h-8 w-8" />,
+    description: "NoSQL database solutions with MongoDB",
+  },
+  {
+    name: "SQL",
+    icon: <Database className="h-8 w-8" />,
+    description: "Database design and optimization with SQL",
   },
   {
     name: "AWS",
@@ -77,6 +89,12 @@ const skills = [
     icon: <GitBranch className="h-8 w-8" />,
     description: "CI/CD pipelines, containerization, and infrastructure automation",
   },
+  {
+    name: "Docker",
+    icon: <Container className="h-8 w-8" />,
+    description: "Containerization and deployment with Docker",
+  },
+
 ]
 
 export default function Skills() {
