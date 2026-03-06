@@ -1,9 +1,9 @@
 module.exports = {
     apps: [
         {
-            name: "annekaa-frontend-4000",
+            name: "mdazkaar.site-8000",
             script: "node .next/server.js",
-            port: 8003
+            port: 8000
         }
     ]
 }

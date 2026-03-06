@@ -67,11 +67,11 @@ jobs:
             # Load NVM and use Node 22
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-            nvm use 22
+            nvm use 22.22.1
 
             command -v node
             command -v pm2
 
-            pm2 reload ecosystem.config.js || pm2 start ecosystem.config.js 
+            pm2 reload ecosystem.config.cjs || pm2 start ecosystem.config.cjs 
             pm2 save
             echo "✅ Standalone Next.js deployed!"
