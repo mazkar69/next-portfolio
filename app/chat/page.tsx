@@ -81,6 +81,13 @@ export default function ChatPage() {
     }
   }, [messages])
 
+  // Keep focus on the input after the AI finishes responding
+  useEffect(() => {
+    if (!isTyping && inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [isTyping])
+
   const handleSend = async () => {
     if (!inputValue.trim()) return
 
@@ -109,7 +116,7 @@ export default function ChatPage() {
       }))
 
 
-    //   return
+      //   return
       // Call Gemini API
       const response = await fetch("/api/chatgpt", {
         method: "POST",
@@ -132,6 +139,8 @@ export default function ChatPage() {
           timestamp: new Date(),
         }
         setMessages((prev) => [...prev, aiMessage])
+
+
       } else {
         throw new Error(data.error || "Failed to get response")
       }
@@ -205,17 +214,15 @@ export default function ChatPage() {
                     className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
                   >
                     <div
-                      className={`flex flex-col sm:flex-row gap-1 sm:gap-3 max-w-[100%] sm:max-w-[80%] ${
-                        message.sender === "user" ? "flex-row-reverse" : "flex-row"
-                      }`}
+                      className={`flex flex-col sm:flex-row gap-1 sm:gap-3 max-w-[100%] sm:max-w-[80%] ${message.sender === "user" ? "flex-row-reverse" : "flex-row"
+                        }`}
                     >
                       {/* Avatar */}
                       <div
-                        className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
-                          message.sender === "user"
+                        className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${message.sender === "user"
                             ? "bg-gradient-to-r from-primary-500 to-secondary-500"
                             : "bg-gradient-to-r from-secondary-500/10 to-primary-500/10"
-                        }`}
+                          }`}
                       >
                         {message.sender === "user" ? (
                           <User className="h-5 w-5 text-white" />
@@ -226,17 +233,15 @@ export default function ChatPage() {
 
                       {/* Message Bubble */}
                       <div
-                        className={`rounded-2xl px-4 py-3 ${
-                          message.sender === "user"
+                        className={`rounded-2xl px-4 py-3 ${message.sender === "user"
                             ? "bg-gradient-to-r from-primary-500 to-secondary-500 text-white"
                             : "bg-muted"
-                        }`}
+                          }`}
                       >
                         <p className="text-sm leading-relaxed">{message.content}</p>
                         <p
-                          className={`text-xs mt-1 ${
-                            message.sender === "user" ? "text-white/70" : "text-muted-foreground"
-                          }`}
+                          className={`text-xs mt-1 ${message.sender === "user" ? "text-white/70" : "text-muted-foreground"
+                            }`}
                         >
                           {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                         </p>
