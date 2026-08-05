@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24.13.0
           cache: "npm"
 
       - name: Install dependencies
@@ -64,10 +64,10 @@ jobs:
             set -e
             cd /var/www/next-portfolio/
 
-            # Load NVM and use Node 22
+            # Load NVM and use Node 24.13.0
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-            nvm use 22.22.1
+            nvm use 24.13.0
 
             command -v node
             command -v pm2
