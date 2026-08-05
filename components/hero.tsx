@@ -23,7 +23,7 @@ export default function Hero() {
             className="flex-1 space-y-6"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              Hi, I'm <span className="gradient-text">Mohd Azkar</span>
+              Hi, I'm <span className="gradient-text whitespace-nowrap">Mohd Azkar</span>
             </h1>
             <h2 className="text-2xl md:text-3xl font-medium text-foreground/80">Full Stack Developer</h2>
             <p className="text-lg text-muted-foreground max-w-xl">

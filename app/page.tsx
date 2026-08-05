@@ -25,12 +25,12 @@ export default function Home() {
       <ServicesSection />
       <Projects limit={6} />
       <Experience />
-      <CertificatesSection />
+      {/* <CertificatesSection /> */}
       <RemoteWorkCTA />
       <EducationSection />
       {/* <BlogSection /> */}
       <Contact />
-      {/* <BackToTop /> */}
+      <BackToTop />
       <ChatIcon />
     </div>
   )
