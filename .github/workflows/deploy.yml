@@ -25,6 +25,15 @@ jobs:
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
+      - name: Create .env
+        run: |
+          cat <<EOF > .env
+          OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
+          OPEN_ROUTER_API_KEY=${{ secrets.OPEN_ROUTER_API_KEY }}
+          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+          INCEPTION_API_KEY=${{ secrets.INCEPTION_API_KEY }}
+          EOF
+
       - name: Build Next.js (standalone)
         run: npm run build
 
