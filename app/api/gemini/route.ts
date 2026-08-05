@@ -15,7 +15,7 @@ PROFILE INFORMATION of Mohd Azkar:
 - Email: dev.azkaar@gmail.com
 - Phone: +91-8840375826
 - Location: India, Delhi
-- Website: https://mdazkaar.site
+- Website: https://mdazkaar.com
 
 SKILLS & TECHNOLOGIES of Mohd Azkar:
 - Frontend: JavaScript, TypeScript, React, Next.js, Tailwind CSS, React Native

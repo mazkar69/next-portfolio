@@ -9,20 +9,20 @@ import Footer from "@/components/footer"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mdazkaar.site"),
+  metadataBase: new URL("https://mdazkaar.com"),
   title: {
     default: "Mohd Azkar | Full Stack Developer Portfolio",
     template: "%s | Mohd Azkar"
   },
   description: "Professional portfolio of Mohd Azkar, a Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies. Showcasing innovative projects and technical expertise.",
   keywords: ["Mohd Azkar", "Full Stack Developer", "React Developer", "Next.js", "Node.js", "Web Development", "Portfolio", "Software Engineer"],
-  authors: [{ name: "Mohd Azkar", url: "https://mdazkaar.site" }],
+  authors: [{ name: "Mohd Azkar", url: "https://mdazkaar.com" }],
   creator: "Mohd Azkar",
   publisher: "Mohd Azkar",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://mdazkaar.site",
+    url: "https://mdazkaar.com",
     title: "Mohd Azkar | Full Stack Developer Portfolio",
     description: "Building exceptional web experiences with React, Next.js, Node.js, and modern technologies. Explore my projects and expertise.",
     siteName: "Mohd Azkar Portfolio",
@@ -67,8 +67,8 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Mohd Azkar",
-    url: "https://mdazkaar.site",
-    image: "https://mdazkaar.site/images/profile.jpg",
+    url: "https://mdazkaar.com",
+    image: "https://mdazkaar.com/images/profile.jpg",
     jobTitle: "Full Stack Developer",
     description: "Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies",
     sameAs: [

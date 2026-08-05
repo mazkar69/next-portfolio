@@ -6,8 +6,17 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { ArrowLeft, Send, Bot, User } from "lucide-react"
 import Link from "next/link"
+
+type ChatProvider = "chatgpt" | "gemini" | "inception"
 
 interface Message {
   id: string
@@ -23,6 +32,7 @@ export default function ChatPage() {
   const scrollAreaRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [provider, setProvider] = useState<ChatProvider>("inception") // Default provider is Inception
 
   // Load messages from session storage on initial render
   useEffect(() => {
@@ -117,8 +127,8 @@ export default function ChatPage() {
 
 
       //   return
-      // Call Gemini API
-      const response = await fetch("/api/chatgpt", {
+      // Call AI API
+      const response = await fetch(`/api/${provider}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -184,15 +194,30 @@ export default function ChatPage() {
               Back to Portfolio
             </Button>
           </Link>
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-3 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-lg">
-              <Bot className="h-6 w-6 text-primary-500" />
+          {/* <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-2">
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-lg">
+                <Bot className="h-6 w-6 text-primary-500" />
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold">Chat with AI</h1>
+                <p className="text-muted-foreground">Ask me anything about Mohd Azkar</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-3xl font-bold">Chat with AI</h1>
-              <p className="text-muted-foreground">Ask me anything about Mohd Azkar</p>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-muted-foreground">Model:</span>
+              <Select value={provider} onValueChange={(value) => setProvider(value as ChatProvider)}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Select model" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="chatgpt">ChatGPT (OpenRouter)</SelectItem>
+                  <SelectItem value="gemini">Gemini</SelectItem>
+                  <SelectItem value="inception">Inception (Mercury)</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
-          </div>
+          </div> */}
         </motion.div>
 
         {/* Chat Container */}

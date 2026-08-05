@@ -112,7 +112,7 @@ export const projectsData = [
       "My personal portfolio website showcasing my projects, skills, and experience. Built with Next.js and Tailwind CSS for a responsive design.",
     image: "/projects/portfolio.png",
     images: ["/projects/portfolio.png", "/projects/portfolio-2.png"],
-    liveUrl: "https://mdazkaar.site",
+    liveUrl: "https://mdazkaar.com",
     githubUrl: "https://github.com/mazkar69/next-portfolio",
     tags: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion"],
     challenge:
