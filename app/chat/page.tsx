@@ -183,7 +183,7 @@ export default function ChatPage() {
               Back to Portfolio
             </Button>
           </Link>
-          
+
           {/* Restored Header Content for better UI */}
           {/* <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
             <div className="flex items-center gap-3">
@@ -224,17 +224,15 @@ export default function ChatPage() {
               className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
             >
               <div
-                className={`flex flex-col sm:flex-row gap-1 sm:gap-3 max-w-[100%] sm:max-w-[80%] ${
-                  message.sender === "user" ? "flex-row-reverse" : "flex-row"
-                }`}
+                className={`flex flex-col sm:flex-row gap-1 sm:gap-3 max-w-[100%] sm:max-w-[80%] ${message.sender === "user" ? "flex-row-reverse" : "flex-row"
+                  }`}
               >
                 {/* Avatar */}
                 <div
-                  className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
-                    message.sender === "user"
+                  className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${message.sender === "user"
                       ? "bg-gradient-to-r from-primary-500 to-secondary-500"
                       : "bg-gradient-to-r from-secondary-500/10 to-primary-500/10"
-                  }`}
+                    }`}
                 >
                   {message.sender === "user" ? (
                     <User className="h-5 w-5 text-white" />
@@ -245,17 +243,15 @@ export default function ChatPage() {
 
                 {/* Message Bubble */}
                 <div
-                  className={`rounded-2xl px-4 py-3 shadow-sm ${
-                    message.sender === "user"
+                  className={`rounded-2xl px-4 py-3 shadow-sm ${message.sender === "user"
                       ? "bg-gradient-to-r from-primary-500 to-secondary-500 text-white"
                       : "bg-muted"
-                  }`}
+                    }`}
                 >
                   <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
                   <p
-                    className={`text-xs mt-1 ${
-                      message.sender === "user" ? "text-white/70" : "text-muted-foreground"
-                    }`}
+                    className={`text-xs mt-1 ${message.sender === "user" ? "text-white/70" : "text-muted-foreground"
+                      }`}
                   >
                     {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                   </p>

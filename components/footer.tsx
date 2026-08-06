@@ -1,8 +1,16 @@
+"use client"
 import Link from "next/link"
 import { Github, Linkedin, Mail, Twitter, Phone, MapPin, Instagram } from "lucide-react"
 import Image from "next/image"
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+  const showFooter = pathname !== "/chat";
+
+  if(!showFooter) {
+    return null;
+  }
   return (
     <footer className="bg-muted py-12 border-t">
       <div className="container mx-auto px-4">
