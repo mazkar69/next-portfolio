@@ -4,8 +4,6 @@ import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Card } from "@/components/ui/card"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import {
   Select,
   SelectContent,
@@ -29,7 +27,6 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([])
   const [inputValue, setInputValue] = useState("")
   const [isTyping, setIsTyping] = useState(false)
-  const scrollAreaRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [provider, setProvider] = useState<ChatProvider>("inception") // Default provider is Inception
@@ -82,14 +79,14 @@ export default function ChatPage() {
   }, [messages, isLoaded])
 
   useEffect(() => {
-    // Scroll to bottom when new messages arrive
-    if (scrollAreaRef.current) {
-      const scrollContainer = scrollAreaRef.current.querySelector("[data-radix-scroll-area-viewport]")
-      if (scrollContainer) {
-        scrollContainer.scrollTop = scrollContainer.scrollHeight
-      }
+    // Scroll to bottom when new messages arrive or when typing
+    if (isLoaded) {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: "smooth",
+      })
     }
-  }, [messages])
+  }, [messages, isTyping, isLoaded])
 
   // Keep focus on the input after the AI finishes responding
   useEffect(() => {
@@ -101,8 +98,6 @@ export default function ChatPage() {
   const handleSend = async () => {
     if (!inputValue.trim()) return
 
-
-
     // Add user message
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -111,12 +106,10 @@ export default function ChatPage() {
       timestamp: new Date(),
     }
 
-    setMessages((prev) => [...prev, userMessage])   //User message will added but not in API call, this is because setState is async
+    setMessages((prev) => [...prev, userMessage]) // User message will added but not in API call, this is because setState is async
     const currentInput = inputValue
     setInputValue("")
     setIsTyping(true)
-
-
 
     try {
       // Prepare conversation history for context
@@ -125,8 +118,6 @@ export default function ChatPage() {
         content: msg.content,
       }))
 
-
-      //   return
       // Call AI API
       const response = await fetch(`/api/${provider}`, {
         method: "POST",
@@ -134,7 +125,7 @@ export default function ChatPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message: currentInput,            //Passing this because setState is async, so messages won't have the latest user message yet
+          message: currentInput, // Passing this because setState is async, so messages won't have the latest user message yet
           conversationHistory: conversationHistory,
         }),
       })
@@ -149,8 +140,6 @@ export default function ChatPage() {
           timestamp: new Date(),
         }
         setMessages((prev) => [...prev, aiMessage])
-
-
       } else {
         throw new Error(data.error || "Failed to get response")
       }
@@ -179,22 +168,24 @@ export default function ChatPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background pt-20 pb-8">
-      <div className="container mx-auto px-4 max-w-4xl h-[calc(100vh-8rem)]">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-6"
-        >
+    <div className="min-h-screen bg-background flex flex-col">
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="pt-20" // Padding to account for the global navbar
+      >
+        <div className="container mx-auto px-4 max-w-4xl">
           <Link href="/">
             <Button variant="ghost" className="mb-4 -ml-4">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Portfolio
             </Button>
           </Link>
-          {/* <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-2">
+          
+          {/* Restored Header Content for better UI */}
+          {/* <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
             <div className="flex items-center gap-3">
               <div className="p-3 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-lg">
                 <Bot className="h-6 w-6 text-primary-500" />
@@ -218,119 +209,118 @@ export default function ChatPage() {
               </Select>
             </div>
           </div> */}
-        </motion.div>
+        </div>
+      </motion.div>
 
-        {/* Chat Container */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          <Card className="h-[calc(100vh-16rem)] flex flex-col gradient-border">
-            {/* Messages Area */}
-            <ScrollArea ref={scrollAreaRef} className="flex-1 p-3 sm:p-6">
-              <div className="space-y-4">
-                {messages.map((message, index) => (
-                  <motion.div
-                    key={message.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
-                    className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
-                  >
-                    <div
-                      className={`flex flex-col sm:flex-row gap-1 sm:gap-3 max-w-[100%] sm:max-w-[80%] ${message.sender === "user" ? "flex-row-reverse" : "flex-row"
-                        }`}
-                    >
-                      {/* Avatar */}
-                      <div
-                        className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${message.sender === "user"
-                            ? "bg-gradient-to-r from-primary-500 to-secondary-500"
-                            : "bg-gradient-to-r from-secondary-500/10 to-primary-500/10"
-                          }`}
-                      >
-                        {message.sender === "user" ? (
-                          <User className="h-5 w-5 text-white" />
-                        ) : (
-                          <Bot className="h-5 w-5 text-primary-500" />
-                        )}
-                      </div>
-
-                      {/* Message Bubble */}
-                      <div
-                        className={`rounded-2xl px-4 py-3 ${message.sender === "user"
-                            ? "bg-gradient-to-r from-primary-500 to-secondary-500 text-white"
-                            : "bg-muted"
-                          }`}
-                      >
-                        <p className="text-sm leading-relaxed">{message.content}</p>
-                        <p
-                          className={`text-xs mt-1 ${message.sender === "user" ? "text-white/70" : "text-muted-foreground"
-                            }`}
-                        >
-                          {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-
-                {/* Typing Indicator */}
-                {isTyping && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="flex justify-start"
-                  >
-                    <div className="flex gap-3 max-w-[80%]">
-                      <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-r from-secondary-500/10 to-primary-500/10">
-                        <Bot className="h-5 w-5 text-primary-500" />
-                      </div>
-                      <div className="rounded-2xl px-4 py-3 bg-muted">
-                        <div className="flex gap-1">
-                          <div className="w-2 h-2 rounded-full bg-muted-foreground animate-bounce" style={{ animationDelay: "0ms" }} />
-                          <div className="w-2 h-2 rounded-full bg-muted-foreground animate-bounce" style={{ animationDelay: "150ms" }} />
-                          <div className="w-2 h-2 rounded-full bg-muted-foreground animate-bounce" style={{ animationDelay: "300ms" }} />
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </div>
-            </ScrollArea>
-
-            {/* Input Area */}
-            <div className="border-t p-2 sm:p-4">
-              <div className="flex gap-2">
-                <Input
-                  ref={inputRef}
-                  type="text"
-                  placeholder="Type your message..."
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                  className="flex-1"
-                  disabled={isTyping}
-                />
-                <Button
-                  onClick={handleSend}
-                  disabled={!inputValue.trim() || isTyping}
-                  size="icon"
-                  className="bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white"
+      {/* Messages Area (Native Scrolling) */}
+      <main className="flex-1 w-full container mx-auto px-4 max-w-4xl pb-32 pt-6">
+        <div className="space-y-6">
+          {messages.map((message, index) => (
+            <motion.div
+              key={message.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+              className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
+            >
+              <div
+                className={`flex flex-col sm:flex-row gap-1 sm:gap-3 max-w-[100%] sm:max-w-[80%] ${
+                  message.sender === "user" ? "flex-row-reverse" : "flex-row"
+                }`}
+              >
+                {/* Avatar */}
+                <div
+                  className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
+                    message.sender === "user"
+                      ? "bg-gradient-to-r from-primary-500 to-secondary-500"
+                      : "bg-gradient-to-r from-secondary-500/10 to-primary-500/10"
+                  }`}
                 >
-                  <Send className="h-4 w-4" />
-                </Button>
+                  {message.sender === "user" ? (
+                    <User className="h-5 w-5 text-white" />
+                  ) : (
+                    <Bot className="h-5 w-5 text-primary-500" />
+                  )}
+                </div>
+
+                {/* Message Bubble */}
+                <div
+                  className={`rounded-2xl px-4 py-3 shadow-sm ${
+                    message.sender === "user"
+                      ? "bg-gradient-to-r from-primary-500 to-secondary-500 text-white"
+                      : "bg-muted"
+                  }`}
+                >
+                  <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
+                  <p
+                    className={`text-xs mt-1 ${
+                      message.sender === "user" ? "text-white/70" : "text-muted-foreground"
+                    }`}
+                  >
+                    {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                  </p>
+                </div>
               </div>
-              <p className="text-xs text-muted-foreground mt-2 text-center">
-                Press Enter to send
-              </p>
-              {/* <p className="text-xs text-muted-foreground mt-2 text-center">
-                Press Enter to send • Powered by OpenAI GPT-4
-              </p> */}
-            </div>
-          </Card>
-        </motion.div>
-      </div>
+            </motion.div>
+          ))}
+
+          {/* Typing Indicator */}
+          {isTyping && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex justify-start"
+            >
+              <div className="flex gap-3 max-w-[80%]">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-r from-secondary-500/10 to-primary-500/10">
+                  <Bot className="h-5 w-5 text-primary-500" />
+                </div>
+                <div className="rounded-2xl px-4 py-3 bg-muted shadow-sm">
+                  <div className="flex gap-1">
+                    <div className="w-2 h-2 rounded-full bg-muted-foreground animate-bounce" style={{ animationDelay: "0ms" }} />
+                    <div className="w-2 h-2 rounded-full bg-muted-foreground animate-bounce" style={{ animationDelay: "150ms" }} />
+                    <div className="w-2 h-2 rounded-full bg-muted-foreground animate-bounce" style={{ animationDelay: "300ms" }} />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </div>
+      </main>
+
+      {/* Sticky Input Area */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="sticky bottom-0 z-20 bg-background/80 backdrop-blur-md border-t"
+      >
+        <div className="container mx-auto px-4 max-w-4xl py-4">
+          <div className="flex gap-2">
+            <Input
+              ref={inputRef}
+              type="text"
+              placeholder="Type your message..."
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyPress={handleKeyPress}
+              className="flex-1"
+              disabled={isTyping}
+            />
+            <Button
+              onClick={handleSend}
+              disabled={!inputValue.trim() || isTyping}
+              size="icon"
+              className="bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white"
+            >
+              <Send className="h-4 w-4" />
+            </Button>
+          </div>
+          <p className="text-xs text-muted-foreground mt-2 text-center">
+            Press Enter to send
+          </p>
+        </div>
+      </motion.div>
     </div>
   )
 }
