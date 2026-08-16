@@ -13,8 +13,13 @@ import RemoteWorkCTA from "@/components/remote-work-cta"
 import Contact from "@/components/contact"
 import BackToTop from "@/components/back-to-top"
 import ChatIcon from "@/components/chat-icon"
+import { getLatestBlogs } from "@/lib/blog-service"
 
-export default function Home() {
+export const dynamic = "force-dynamic"
+
+export default async function Home() {
+  const latestBlogs = await getLatestBlogs(4)
+
   return (
     <div className="flex flex-col">
       <Hero />
@@ -28,7 +33,7 @@ export default function Home() {
       {/* <CertificatesSection /> */}
       <RemoteWorkCTA />
       <EducationSection />
-      {/* <BlogSection /> */}
+      <BlogSection posts={latestBlogs} />
       <Contact />
       <BackToTop />
       <ChatIcon />

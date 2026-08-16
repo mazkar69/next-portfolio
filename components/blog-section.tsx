@@ -7,46 +7,13 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronLeft, ChevronRight, Clock } from "lucide-react"
+import type { PublicBlog } from "@/lib/blog-service"
 
-const blogPosts = [
-  {
-    title: "Building Accessible React Applications",
-    excerpt:
-      "Learn how to create React applications that are accessible to all users, including those with disabilities.",
-    image: "/placeholder.svg?height=400&width=600",
-    date: "April 10, 2023",
-    readTime: "5 min read",
-    url: "#",
-  },
-  {
-    title: "TypeScript Best Practices for 2023",
-    excerpt:
-      "Discover the latest TypeScript patterns and practices that will help you write cleaner, more maintainable code.",
-    image: "/placeholder.svg?height=400&width=600",
-    date: "March 22, 2023",
-    readTime: "7 min read",
-    url: "#",
-  },
-  {
-    title: "Optimizing MongoDB for Performance",
-    excerpt: "Tips and techniques for improving the performance of your MongoDB database in production environments.",
-    image: "/placeholder.svg?height=400&width=600",
-    date: "February 15, 2023",
-    readTime: "6 min read",
-    url: "#",
-  },
-  {
-    title: "Modern CSS Techniques Every Developer Should Know",
-    excerpt:
-      "Explore modern CSS features like Grid, Flexbox, and Custom Properties that make styling web applications easier.",
-    image: "/placeholder.svg?height=400&width=600",
-    date: "January 30, 2023",
-    readTime: "4 min read",
-    url: "#",
-  },
-]
+interface BlogSectionProps {
+  posts: PublicBlog[]
+}
 
-export default function BlogSection() {
+export default function BlogSection({ posts }: BlogSectionProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [width, setWidth] = useState(0)
   const carouselRef = useRef<HTMLDivElement>(null)
@@ -63,24 +30,26 @@ export default function BlogSection() {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
+  if (posts.length === 0) return null
+
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === blogPosts.length - 1 ? 0 : prevIndex + 1))
+    setCurrentIndex((prevIndex) => (prevIndex === posts.length - 1 ? 0 : prevIndex + 1))
   }
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? blogPosts.length - 1 : prevIndex - 1))
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? posts.length - 1 : prevIndex - 1))
   }
 
   const visiblePosts = () => {
     const itemsPerPage = width > 1024 ? 3 : width > 768 ? 2 : 1
-    const posts = []
+    const result = []
 
     for (let i = 0; i < itemsPerPage; i++) {
-      const index = (currentIndex + i) % blogPosts.length
-      posts.push(blogPosts[index])
+      const index = (currentIndex + i) % posts.length
+      result.push(posts[index])
     }
 
-    return posts
+    return result
   }
 
   return (
@@ -123,7 +92,7 @@ export default function BlogSection() {
             >
               {visiblePosts().map((post, index) => (
                 <motion.div
-                  key={post.title}
+                  key={post._id}
                   className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -133,15 +102,22 @@ export default function BlogSection() {
                   <Card className="h-full flex flex-col hover:shadow-md transition-shadow border-t-4 border-t-primary-500">
                     <div className="relative h-48 w-full overflow-hidden">
                       <Image
-                        src={post.image || "/placeholder.svg"}
+                        src={post.thumbnail?.url || "/placeholder.svg"}
                         alt={post.title}
                         fill
                         className="object-cover transition-transform hover:scale-105 duration-500"
+                        unoptimized
                       />
                     </div>
                     <CardHeader>
                       <div className="flex items-center text-sm text-primary-500 mb-2">
-                        <span>{post.date}</span>
+                        <span>
+                          {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })}
+                        </span>
                         <span className="mx-2">•</span>
                         <Clock className="h-3 w-3 mr-1" />
                         <span>{post.readTime}</span>
@@ -149,11 +125,13 @@ export default function BlogSection() {
                       <CardTitle className="line-clamp-2">{post.title}</CardTitle>
                     </CardHeader>
                     <CardContent className="flex-grow">
-                      <CardDescription className="line-clamp-3">{post.excerpt}</CardDescription>
+                      <CardDescription className="line-clamp-3">
+                        {post.shortDescription}
+                      </CardDescription>
                     </CardContent>
                     <CardFooter>
                       <Button variant="outline" asChild className="w-full gradient-border">
-                        <Link href={post.url}>Read Article</Link>
+                        <Link href={`/blog/${post.slug}`}>Read Article</Link>
                       </Button>
                     </CardFooter>
                   </Card>

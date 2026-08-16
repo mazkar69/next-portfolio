@@ -79,7 +79,7 @@ export default function Footer() {
                 <Link href="#projects" className="hover:text-primary transition-colors">
                   Projects
                 </Link>
-                <Link href="#blog" className="hover:text-primary transition-colors">
+                <Link href="/blog" className="hover:text-primary transition-colors">
                   Blog
                 </Link>
                 <Link href="#contact" className="hover:text-primary transition-colors">
