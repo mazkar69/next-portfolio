@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Shell(npx tsc --noEmit --skipLibCheck --module esnext --moduleResolution bundler --target es2022 .commandcode/mods/roast-me.ts)",
+      "Shell(dir:*)",
+      "Shell(findstr:*)",
+      "Shell(findstr /s /i /m \"ModApi\" \"%APPDATA%\\npm\\node_modules\\command-code\\dist\\*.d.ts\" 2>nul)"
+    ],
+    "deny": [],
+    "defaultMode": "default"
+  }
+}

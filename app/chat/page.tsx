@@ -224,8 +224,9 @@ export default function ChatPage() {
               className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
             >
               <div
-                className={`flex flex-col sm:flex-row gap-1 sm:gap-3 max-w-[100%] sm:max-w-[80%] ${message.sender === "user" ? "flex-row-reverse" : "flex-row"
-                  }`}
+                className={`flex items-start gap-2 sm:gap-3 max-w-[100%] sm:max-w-[80%] ${
+                  message.sender === "user" ? "flex-row-reverse" : "flex-row"
+                }`}
               >
                 {/* Avatar */}
                 <div
